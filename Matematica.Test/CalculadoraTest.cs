@@ -77,18 +77,62 @@ namespace Matematica.Test
         }
 
         [TestMethod]
-        public void ObtenerUnNumeroConDosDecimales()
+        public void ObtenerUnNumeroConDosDecimal()
         {
+            // Arrange -> Preparacion
             var numeroPiCon5Decimales = 3.14159;
             var numeroPiCon2Decimales = 3.14;
 
+            // act -> Esta la parte de Ejecución 
             var calculadora = new Calculadora();
             var resultado = calculadora.TomarDosDecimales(numeroPiCon5Decimales);
 
+            // assert -> Verificación
             Assert.AreEqual(numeroPiCon2Decimales, resultado);
-
 
         }
 
+        [TestMethod]
+        public void ObtenerUnNumeroCon3Decimal()
+        {
+            // Arrange -> Preparacion
+            var numeroPiConDecimales = 3.141592653589793238462643383;
+            var numeroPiCon3Decimales = 3.141;
+
+            // act -> Esta la parte de Ejecución 
+            var calculadora = new Calculadora();
+            var resultado = calculadora.TomarTresDecimales(numeroPiConDecimales);
+
+            // assert -> Verificación
+            Assert.AreEqual(numeroPiCon3Decimales, resultado);
+
+        }
+        [TestMethod]
+
+        public void ObtenerDecimales()
+        {
+            var numeroAureo = 1.61803398874989;
+            var numeroDeDecimales = 5;
+
+            var esperado = 1.61803;
+
+            var calculadora = new Calculadora();
+            var resultado = calculadora.TomarDecimales(numeroAureo, numeroDeDecimales);
+
+            Assert.AreEqual(esperado, resultado);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+
+        public void ObtenerDecimalesNegativos()
+        {
+            var numeroAureo = 1.61803398874989;
+            var numeroDeDecimales = -5;
+
+            var calculadora = new Calculadora();
+            _ = calculadora.TomarDecimales(numeroAureo, numeroDeDecimales);
+
+        }
     }
 }
