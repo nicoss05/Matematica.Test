@@ -7,6 +7,13 @@ namespace Matematica.Test
     [TestClass]
     public class CalculadoraTest
     {
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
         [TestMethod]
         public void SumaDosNumeros()
         {
@@ -134,5 +141,36 @@ namespace Matematica.Test
             _ = calculadora.TomarDecimales(numeroAureo, numeroDeDecimales);
 
         }
+
+        [TestMethod]
+        [DataSource(@"Provider=Microsoft.SqlServerCe.Client.4.0; Data Source=C:\Data\MathsData.sdf;", "Numbers")]
+
+        public void AñadirEnteros()
+        {
+            //int x = Convert.ToInt32(TestContext.DataRow["FirstNumber"]);
+            var numeroEntero1 = 12;
+            var numeroEntero2 = 3;
+            var esperado = 15;
+
+            var calculadora = new Calculadora();
+            int resultado = calculadora.AumentarEnteros(numeroEntero1, numeroEntero2);
+            Assert.AreEqual(esperado, resultado);
+
+        }
+
+        [TestMethod]
+        public void LimitarDecimales()
+        {
+            var numeroDecimal = 1.61803398874989;
+            var numeroLimitado = (Math.Round(numeroDecimal, 3));
+            var espera = 1.618;
+
+            var calculadora = new Calculadora();
+            var resultado = calculadora.LimitarDecimales(numeroDecimal, numeroLimitado);
+
+            Assert.AreEqual(espera, resultado);
+
+        }
     }
 }
+

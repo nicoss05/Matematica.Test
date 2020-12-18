@@ -73,17 +73,27 @@ namespace Matematica.Logica
             //2 -->100
             //3 --> 1000
 
-            return numeroAureo / Math.Pow(10,numeroDeDecimales);
+            return numeroAureo / Math.Pow(10, numeroDeDecimales);
 
         }
 
         private double MoverLaComaALaDerecha(double numeroAureo, int numeroDeDecimales)
         {
-            return numeroAureo * Math.Pow(10,numeroDeDecimales);
+            return numeroAureo * Math.Pow(10, numeroDeDecimales);
         }
 
-
-
-
+        public int AumentarEnteros(int numeroEntero1, int numeroEntero2)
+        {
+            var suma = numeroEntero1;
+            for (var i = 0; i < numeroEntero2; i++)
+            {
+                suma++;
+            }
+            return suma;
+        }
+        public double LimitarDecimales(double numeroDecimal, double numeroLimitado)
+            {
+                return numeroLimitado;
+            }
     }
 }
